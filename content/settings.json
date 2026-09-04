@@ -4,13 +4,29 @@
   "hero_title_pre": "Construimos",
   "hero_title_highlight": "software de altura",
   "hero_title_post": "desde la isla.",
-  "hero_lede": "Somos tres ingenieros en Informática especializados en aplicaciones web, APIs y bases de datos. Diseñamos, desarrollamos y mantenemos productos digitales con React, Python, Java y SQL.",
-  "stats": [
-    { "num": "+10", "label": "años de experiencia" },
-    { "num": "3", "label": "ingenieros titulados" },
-    { "num": "100%", "label": "remoto, desde Cuba" }
-  ],
-  "stack": ["React", "Python", "Java", "SQL", "NoSQL", "Git"],
+  "hero_lede": "Somos cuatros ingenieros en Informática especializados en aplicaciones web, APIs y bases de datos. Diseñamos, desarrollamos y mantenemos productos digitales con React, Python, Java y SQL.",
   "contact_email": "hola@cayolabs.com",
-  "contact_location": "Remoto · Cuba 🇨🇺"
+  "contact_location": "Remoto · Cuba 🇨🇺",
+  "stats": [
+    {
+      "num": "+10",
+      "label": "años de experiencia"
+    },
+    {
+      "num": "4",
+      "label": "ingenieros titulados"
+    },
+    {
+      "num": "100%",
+      "label": "remoto, desde Cuba"
+    }
+  ],
+  "stack": [
+    "React",
+    "Python",
+    "Java",
+    "SQL",
+    "NoSQL",
+    "Git"
+  ]
 }
