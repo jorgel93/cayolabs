@@ -1,0 +1,9 @@
+{
+  "name": "cayolabs",
+  "private": true,
+  "description": "Sitio web de Cayo Labs — equipo de desarrollo de software en Cuba.",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js"
+  }
+}

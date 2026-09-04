@@ -1,0 +1,75 @@
+# Configuración de Pages CMS para Cayo Labs
+# Panel: https://app.pagescms.org  (inicia sesión con GitHub)
+
+media:
+  input: content/media
+  output: /media
+
+content:
+  # Ajustes generales del sitio (un solo archivo JSON)
+  - name: sitio
+    label: Ajustes del sitio
+    type: file
+    path: content/settings.json
+    format: json
+    fields:
+      - { name: brand, label: Nombre de marca, type: string }
+      - { name: hero_eyebrow, label: Hero (texto pequeño), type: string }
+      - { name: hero_title_pre, label: Hero (texto antes del resaltado), type: string }
+      - { name: hero_title_highlight, label: Hero (texto resaltado), type: string }
+      - { name: hero_title_post, label: Hero (texto después del resaltado), type: string }
+      - { name: hero_lede, label: Hero (párrafo), type: text }
+      - { name: contact_email, label: Email de contacto, type: string }
+      - { name: contact_location, label: Ubicación, type: string }
+      - name: stats
+        label: Estadísticas
+        type: object
+        list: true
+        fields:
+          - { name: num, type: string }
+          - { name: label, type: string }
+      - name: stack
+        label: Tecnologías (una por entrada)
+        type: string
+        list: true
+
+  # Miembros del equipo
+  - name: equipo
+    label: Equipo
+    type: collection
+    path: content/team
+    view: { primary: name }
+    fields:
+      - { name: name, label: Nombre, type: string }
+      - { name: role, label: Rol, type: string }
+      - { name: avatar_color, label: Color del avatar (hex), type: string }
+      - { name: bio, label: Biografía, type: text }
+
+  # Servicios
+  - name: servicios
+    label: Servicios
+    type: collection
+    path: content/services
+    view: { primary: title }
+    fields:
+      - { name: title, label: Título, type: string }
+      - name: icon
+        label: Icono
+        type: string
+        description: "Clave del icono: grid, code, database, settings, layers o shield"
+      - { name: description, label: Descripción, type: text }
+
+  # Portafolio
+  - name: portafolio
+    label: Portafolio
+    type: collection
+    path: content/projects
+    view: { primary: title }
+    fields:
+      - { name: title, label: Título, type: string }
+      - { name: tag, label: Etiqueta, type: string }
+      - name: color
+        label: Color
+        type: string
+        description: "teal, coral o navy"
+      - { name: description, label: Descripción, type: text }
