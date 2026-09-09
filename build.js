@@ -234,12 +234,17 @@ const html = `<!DOCTYPE html>
             </li>
           </ul>
         </div>
-        <form class="contact__form" action="mailto:${esc(settings.contact_email)}" method="post" enctype="text/plain">
+        <form class="contact__form" action="https://formsubmit.co/${esc(settings.contact_email)}" method="POST" data-contact-email="${esc(settings.contact_email)}">
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio de ${esc(settings.brand)}" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="_honey" class="form__honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="field"><label for="nombre">Nombre</label><input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required /></div>
           <div class="field"><label for="email">Correo</label><input type="email" id="email" name="email" placeholder="tu@correo.com" required /></div>
           <div class="field"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto" required></textarea></div>
           <button type="submit" class="btn btn--primary btn--block">Enviar mensaje</button>
-          <p class="form__note">Se abre tu cliente de correo.</p>
+          <p class="form__status" role="status" aria-live="polite" hidden></p>
+          <p class="form__note">Te responderemos al correo que indiques.</p>
         </form>
       </div>
     </section>

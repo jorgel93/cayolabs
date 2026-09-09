@@ -63,4 +63,60 @@
   } else {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
+
+  // Contact form → FormSubmit (envía al correo de la empresa)
+  var form = document.querySelector('.contact__form');
+  if (form) {
+    var statusEl = form.querySelector('.form__status');
+    var submitBtn = form.querySelector('[type="submit"]');
+    var emailTo = form.getAttribute('data-contact-email') || '';
+
+    function setStatus(type, message) {
+      if (!statusEl) return;
+      statusEl.hidden = !message;
+      statusEl.className = 'form__status' + (type ? ' form__status--' + type : '');
+      statusEl.textContent = message || '';
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!emailTo) {
+        setStatus('error', 'No hay un correo de destino configurado.');
+        return;
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var payload = Object.fromEntries(new FormData(form).entries());
+      setStatus('pending', 'Enviando mensaje…');
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(emailTo), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+        .then(function (result) {
+          if (result.ok && result.data && result.data.success !== 'false') {
+            setStatus('success', 'Mensaje enviado. Te responderemos pronto.');
+            form.reset();
+          } else {
+            var msg = (result.data && result.data.message) || 'No se pudo enviar. Inténtalo de nuevo.';
+            setStatus('error', msg);
+          }
+        })
+        .catch(function () {
+          setStatus('error', 'Error de red. Revisa tu conexión e inténtalo de nuevo.');
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
+    });
+  }
 })();
