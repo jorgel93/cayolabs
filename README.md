@@ -37,6 +37,13 @@ npm run build      # genera dist/index.html
 npx serve dist     # o abre dist/index.html en el navegador
 ```
 
+## Formulario de contacto
+
+El formulario envía los mensajes a `contact_email` (en `content/settings.json`) mediante
+[FormSubmit](https://formsubmit.co). La primera vez que alguien envía desde el dominio
+en producción, FormSubmit manda un correo de activación a esa dirección: hay que
+confirmar el enlace para que los envíos siguientes lleguen automáticamente.
+
 ## Despliegue
 
 El proyecto está conectado a Vercel: cada push a `main` despliega automáticamente.
